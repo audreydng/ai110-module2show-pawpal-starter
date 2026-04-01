@@ -1,0 +1,65 @@
+classDiagram
+    class Task {
+        +description: str
+        +duration_minutes: int
+        +frequency: str
+        +priority: str
+        +completed: bool
+        +due_time: str
+        +due_date: date
+        +get_priority_score() int
+        +is_mandatory() bool
+        +mark_completed() None
+        +mark_complete() None
+        +mark_incomplete() None
+        +next_occurrence() Task?
+    }
+
+    class Pet {
+        +name: str
+        +species: str
+        +age: int
+        +medical_conditions: list[str]
+        +energy_level: str
+        +tasks: list[Task]
+        +add_task(task) None
+        +get_tasks(include_completed=False) list[Task]
+        +get_required_categories() list[str]
+        +is_task_appropriate(task) bool
+    }
+
+    class Owner {
+        +name: str
+        +daily_available_minutes: int
+        +preferred_time_windows: list[str]
+        +priority_style: str
+        +pets: list[Pet]
+        +add_pet(pet) None
+        +get_pet(name) Pet?
+        +update_availability(minutes) None
+        +get_all_tasks(include_completed=False) list
+        +can_accept_task(task) bool
+    }
+
+    class Scheduler {
+        +strategy: str
+        +generated_at: datetime?
+        +explanation_log: list[str]
+        +conflict_warnings: list[str]
+        +retrieve_tasks(owner, include_completed=False) list
+        +generate_daily_plan(owner, available_minutes=None) list
+        +sort_by_time(task_entries) list
+        +filter_tasks(task_entries, pet_name=None, completed=None) list
+        +rank_tasks(task_entries) list
+        +select_tasks_within_time_limit(task_entries, minutes) list
+        +assign_time_slots(task_entries, windows) list
+        +detect_conflicts(task_entries) list[str]
+        +explain_choices(plan) list[str]
+        +complete_task(owner, pet_name, task_description) bool
+    }
+
+    Owner "1" --> "0..*" Pet : owns
+    Pet "1" --> "0..*" Task : has
+    Scheduler ..> Owner : reads tasks from
+    Scheduler ..> Pet : updates tasks for
+    Scheduler ..> Task : sorts, filters, schedules
