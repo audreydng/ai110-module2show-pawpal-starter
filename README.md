@@ -46,7 +46,7 @@ Agent Mode was used to plan and implement the advanced logic layer in focused it
 
 ## 📸 Demo
 
-<a href="/course_images/ai110/pawpal_app_demo.png" target="_blank"><img src='/course_images/ai110/pawpal_app_demo.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>
+<a href="pawpal_app_demo.png" target="_blank"><img src='pawpal_app_demo.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>
 
 ## Getting started
 
